@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmbhqya00qayt"]
+
+[ext_resource type="PackedScene" uid="uid://bbnwg2h8vd7q1" path="res://scenes/Map/Latest/map latest.tscn" id="1_jtt2i"]
+
+[node name="Environment" type="MeshInstance3D"]
+
+[node name="Map anyarrrrrrr" parent="." instance=ExtResource("1_jtt2i")]

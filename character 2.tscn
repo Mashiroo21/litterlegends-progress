@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhakrlkcj0efm"]
+
+[ext_resource type="PackedScene" uid="uid://o56ck7ipooo6" path="res://Character/GLB format/character-female-b.glb" id="1_q61jl"]
+[ext_resource type="Script" path="res://Scripts/animation_player.gd" id="2_d8e5y"]
+
+[node name="character-female-b2" instance=ExtResource("1_q61jl")]
+
+[node name="Skeleton3D" parent="character-female-b" index="0"]
+bones/4/rotation = Quaternion(0, 0, -0.382683, 0.92388)
+bones/5/rotation = Quaternion(0, 0, 0.382683, 0.92388)
+
+[node name="AnimationPlayer" parent="." index="1"]
+script = ExtResource("2_d8e5y")

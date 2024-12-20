@@ -1,0 +1,114 @@
+[gd_scene load_steps=13 format=3 uid="uid://bl4dr4v1x55tn"]
+
+[ext_resource type="Script" path="res://Scripts/ingame3.gd" id="1_eh0p0"]
+[ext_resource type="PackedScene" uid="uid://el56d68qo6ej" path="res://scenes/player.tscn" id="1_kk6aw"]
+[ext_resource type="Script" path="res://Scripts/female_char_exmple.gd" id="2_pi6ho"]
+[ext_resource type="PackedScene" uid="uid://bmbhqya00qayt" path="res://Map.tscn" id="3_cchv8"]
+[ext_resource type="PackedScene" uid="uid://caid1r5bpe42l" path="res://scenes/Assets/plastic bottle.tscn" id="5_hgxhe"]
+[ext_resource type="Script" path="res://Scripts/item_manager.gd" id="5_klq0q"]
+[ext_resource type="PackedScene" uid="uid://cvs3f73j8qa32" path="res://scenes/Assets/chemical.tscn" id="6_i4f1h"]
+[ext_resource type="PackedScene" uid="uid://7lhkklyfkac4" path="res://scenes/Assets/apple.tscn" id="7_gt3qt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x2ib"]
+transparency = 1
+blend_mode = 3
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b5bl4"]
+material = SubResource("StandardMaterial3D_0x2ib")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gdpcl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jtja0"]
+
+[node name="InGame" type="Node3D"]
+script = ExtResource("1_eh0p0")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 30.0
+one_shot = true
+
+[node name="Time" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="WarningLabel" type="Label" parent="."]
+offset_left = 544.0
+offset_top = 69.0
+offset_right = 584.0
+offset_bottom = 92.0
+horizontal_alignment = 1
+
+[node name="Barrier" type="StaticBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, -5.59305, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Barrier"]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 15, 0)
+mesh = SubResource("BoxMesh_b5bl4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier"]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 15, 0)
+shape = SubResource("BoxShape3D_gdpcl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.966828, 0.255429, 0, -0.255429, -0.966828, 0, 57.232, -67.6628)
+
+[node name="Player" parent="." instance=ExtResource("1_kk6aw")]
+transform = Transform3D(-2, 0, -3.01992e-07, 0, 2, 0, 3.01992e-07, 0, -2, -29.7748, 0.263641, 32.1189)
+script = ExtResource("2_pi6ho")
+
+[node name="RespawnTimer" type="Timer" parent="Player"]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="Panel" type="Panel" parent="Player/CanvasLayer"]
+offset_right = 1153.0
+offset_bottom = 651.0
+
+[node name="CountdownLabel" type="Label" parent="Player/CanvasLayer/Panel"]
+offset_left = 489.0
+offset_top = 290.0
+offset_right = 676.0
+offset_bottom = 313.0
+
+[node name="CameraPivot" type="Node3D" parent="Player"]
+unique_name_in_owner = true
+transform = Transform3D(1, -6.66489e-08, 1.55054e-08, 6.66489e-08, 0.897312, -0.441396, 1.55054e-08, 0.441396, 0.897312, 0, 0.49397, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player/CameraPivot"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("SphereShape3D_jtja0")
+spring_length = 2.5
+
+[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot/SpringArm3D"]
+unique_name_in_owner = true
+transform = Transform3D(0.333333, 0, 0, 0, 0.333333, 0, 0, 0, 0.333333, 0, 0, 0)
+
+[node name="HeldItemPosition" type="Marker3D" parent="Player"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.871602, 0)
+
+[node name="Environment" parent="." instance=ExtResource("3_cchv8")]
+
+[node name="TargetPosition" type="Marker3D" parent="Environment"]
+
+[node name="Items" type="Node3D" parent="."]
+script = ExtResource("5_klq0q")
+
+[node name="Item5" parent="Items" groups=["pickupable"] instance=ExtResource("5_hgxhe")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 15.5348, 0.146458, 36.7542)
+
+[node name="Item1" parent="Items" groups=["pickupable"] instance=ExtResource("5_hgxhe")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -15.8637, 0, -36.9721)
+
+[node name="Item2" parent="Items" groups=["pickupable"] instance=ExtResource("6_i4f1h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.328879, 0, 31.1414)
+
+[node name="Item3" parent="Items" groups=["pickupable"] instance=ExtResource("7_gt3qt")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -23.3783, 0.38009, 0.443495)
+
+[node name="Item4" parent="Items" groups=["pickupable"] instance=ExtResource("7_gt3qt")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 26.0349, 1.31872, 0.258715)

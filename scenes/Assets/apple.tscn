@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://7lhkklyfkac4"]
+
+[ext_resource type="PackedScene" uid="uid://u3p1fneucy2o" path="res://Assets/Assets sampah/apple_trash_low_poly.glb" id="1_0rbln"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_0rbln")]
+
+[node name="Icosphere" parent="Sketchfab_model/66398c7e3f6145f5a0622168debf5008_fbx/RootNode" index="0"]
+transform = Transform3D(343.06, 0, 0, 0, -5.58916e-05, 343.06, 0, -343.06, -5.58916e-05, 1.41082, 0, 0)

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvs3f73j8qa32"]
+
+[ext_resource type="PackedScene" uid="uid://c88xacei5ig3v" path="res://Assets/Assets sampah/barell_-_bio_hazard.glb" id="1_0nxtn"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_0nxtn")]
